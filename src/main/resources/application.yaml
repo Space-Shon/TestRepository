@@ -1,0 +1,40 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: TestProject
+  datasource:
+    url: ${ORACLE_URL:jdbc:oracle:thin:@localhost:1521:XE}
+    username: ${ORACLE_USERNAME:test_dto}
+    password: ${ORACLE_PASSWORD:test}
+    driver-class-name: oracle.jdbc.OracleDriver
+  jpa:
+    databasePlatform: org.hibernate.dialect.OracleDialect
+    show-sql: false
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
+        jdbc:
+          time_zone: UTC
+          batch_size: 50
+        order_inserts: true
+        order_updates: true
+  liquibase:
+    changeLog: classpath:/db/changelog.yaml
+    enabled: true
+  jackson:
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+    time-zone: UTC
+
+springdoc:
+  api-docs:
+    path: /support/swagger
+  swagger-ui:
+    path: /support/swagger-ui.html
+    disable-swagger-default-url: true
+  use-fqn: true
