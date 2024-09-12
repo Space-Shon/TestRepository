@@ -14,5 +14,5 @@ class UserServiceImpl(
 
     @Transactional(readOnly = true)
     override fun getAllBy(requestParam: UserGetByParameterRequest): List<UserEntity> =
-        userRepository.getAllBy(isDeleted = requestParam.deleted)
+        userRepository.getAllBy(isDeleted = requestParam.isDeleted)
 }
